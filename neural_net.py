@@ -308,10 +308,6 @@ def neural_net(X,Y,n_h,learning_rate,epochs, cost_goal = 0, print_cost = False, 
 		#save gradients for gradient-descent
 		grads = two_layer_backward(Y_hat,Y,caches)
 
-		#if needed: check gradients
-		#if epoch == 2:
-			#gradient_checking(X,Y,parameters, grads)
-
 		#update parameters via gradient descent
 		parameters = update_parameters(parameters,grads,learning_rate)
 		#stop and safe the parameters if the desired cost is obtained. The network can afterwards be called again to continue training with a different learning rate 
