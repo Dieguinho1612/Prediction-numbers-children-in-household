@@ -139,13 +139,11 @@ def two_layer_forward(X, parameters):
 	W1 = parameters["W1"]
 	b1 = parameters["b1"]
 	A1, cache = activation_forward(X,W1,b1,"leaky_relu")
-	#print("A1 = " + str(A1))
 	caches.append(cache)
 
 	W2 = parameters["W2"]
 	b2 = parameters["b2"]
 	A2, cache = activation_forward(A1,W2,b2,"")
-	#print("A2 = " + str(A2))
 	caches.append(cache)
 
 	Y_hat = A2
@@ -168,9 +166,7 @@ def linear_backward(dZ,cache):
 def linear_activation_backward(dA, cache, activation):
 	linear_cache, activation_cache = cache
 	if activation == "leaky_relu":
-		dZ = dA * leaky_relu_backwards(activation_cache)
-		#print("dA check = " + str(dA))
-		#print("dZ = " +str(dZ))
+		dZ = dA * leaky_relu_backwards(activation_cache)		
 	elif activation == "":
 		dZ = dA * 1
 	dA_prev, dW, db = linear_backward(dZ,linear_cache)
@@ -180,16 +176,12 @@ def linear_activation_backward(dA, cache, activation):
 def two_layer_backward(A2,Y, caches):
 	grads = {}
 	dA2 = (-2/m) * (Y-A2)
-	#print("dA2 = " + str(dA2))
-
+	
 	dA_prev_temp, dW_temp, db_temp = linear_activation_backward(dA2, caches[1], "")
 	grads["dA1"] = dA_prev_temp
 	grads["dW2"] = dW_temp
 	grads["db2"] = db_temp
-	#print("dW2 = " + str(grads["dW2"]))
-	#print("")
-	#print("db2 = " + str(grads["db2"]))
-
+	
 	dA_prev_temp, dW_temp, db_temp = linear_activation_backward(grads["dA1"], caches[0], "leaky_relu")
 	grads["dW1"] = dW_temp
 	grads["db1"] = db_temp
