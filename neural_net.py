@@ -292,7 +292,6 @@ def neural_net(X,Y,n_h,learning_rate,epochs, cost_goal = 0, print_cost = False, 
 	
 		#show costs to control convergence
 		cost = cost_func(Y,Y_hat)
-		#print("cost = " + str(cost))
 		if print_cost == True:
 			if epoch % 10 == 0:
 				print("epoch = " + str(epoch), "cost = " + str(cost))						
