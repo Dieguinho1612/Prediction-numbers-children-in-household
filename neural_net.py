@@ -78,7 +78,7 @@ Y_test = Y_data[:,60000:]
 #standardize
 Y_mean = np.mean(Y_train, axis=1) 
 Y_std = np.std(Y_train, axis=1)
-Y_data = (Y_data - X_mean) / X_std
+Y_data = (Y_data - Y_mean) / Y_std
 Y_train =  (Y_train - Y_mean) / Y_std
 Y_test =  (Y_test - Y_mean) / Y_std
 #Y_data is (1,m)-matrix containing the labels (number of children) of the instances/households
@@ -299,12 +299,13 @@ def neural_net(X,Y,n_h,learning_rate,epochs, cost_goal = 0, print_cost = False, 
 		#save gradients for gradient-descent
 		grads = two_layer_backward(Y_hat,Y,caches)
 
-		#update parameters via gradient descent
-		parameters = update_parameters(parameters,grads,learning_rate)
 		#stop and safe the parameters if the desired cost is obtained. The network can afterwards be called again to continue training with a different learning rate 
 		if cost < cost_goal:
 			save = True
 			break
+		
+		#update parameters via gradient descent
+		parameters = update_parameters(parameters,grads,learning_rate)
 		
 		#linearly update learning rate
 		learning_rate = learning_rate - learning_rate/epochs
