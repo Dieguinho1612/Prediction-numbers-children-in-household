@@ -1,6 +1,6 @@
 # Prediction-numbers-children-in-household
 <p>Given a dataset of different households, we will try to predict how many children live in a household.<br>
-For that we create a Neural Net in python, train it, test its performance.<br>
+For that, we create a Neural Net <ins>from scratch</ins> in Python 3, train it, test its performance.<br>
 The method we use is regression.<br>
 We use the obtained weights to create a function to give predictions on households of new data.</p><br>
 
